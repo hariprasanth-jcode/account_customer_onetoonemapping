@@ -19,4 +19,15 @@ public class CustomerDao {
 	public static Customer findCustomerByPhone(long phone) {
 		return entityManager.find(Customer.class, phone);
 	}
+	
+	public static void deleteByCustomerPhone(long phone) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(findCustomerByPhone(phone));
+		entityManager.getTransaction().commit();
+	}
+	
+	public static void findAllCustomet() {
+		entityManager.createQuery("Select c from Customer c").getResultList()
+		.forEach(System.out::println);
+	}
 }

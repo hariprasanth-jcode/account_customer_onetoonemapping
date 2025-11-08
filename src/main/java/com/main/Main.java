@@ -25,6 +25,9 @@ public class Main {
 //		
 //		AccountDao.insertAccount(a);
 		
-		AccountDao.allocateAccount(987654321,1);
+		
+		
+		CustomerDao.deleteByCustomerPhone(987654321);
+		//AccountDao.deleteAccountById(1);
 	}
 }
