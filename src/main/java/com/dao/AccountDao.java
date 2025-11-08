@@ -8,6 +8,11 @@ import com.entity.Account;
 import com.entity.Customer;
 import com.util.Connection;
 
+/**
+ * @Author Hariprasanth 
+ * 
+ * @version 1.0
+ */
 public class AccountDao {
 
 	private static EntityManager entityManager = Connection.getEntityManager();
@@ -75,20 +80,19 @@ public class AccountDao {
 		entityManager.getTransaction().commit();
 	}
 	
-	public static void findByBalance(Double balance) {
+	public static List<Account> findByBalance(Double balance) {
 		List<Account> li = entityManager
 				.createQuery("Select a from Account a")
 				.getResultList();
-       li.stream().filter(i->i.getBalance()==balance)
-       .toList().forEach(System.out::println);	
+       return li.stream().filter(i->i.getBalance().equals(balance))
+       .toList();	
 		
 	}
-	public static void findByBranch(String branch) {
+	public static List<Account> findByBranch(String branch) {
 		List<Account> li = entityManager
 				.createQuery("Select a from Account a")
 				.getResultList();
-       li.stream().filter(i->i.getBranch().equalsIgnoreCase(branch))
-       .toList().forEach(System.out::println);	
-		
+       return li.stream().filter(i->i.getBranch().equalsIgnoreCase(branch))
+       .toList();		
 	}
 }

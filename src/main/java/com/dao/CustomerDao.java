@@ -7,7 +7,11 @@ import javax.persistence.Query;
 
 import com.entity.Customer;
 import com.util.Connection;
-
+/**
+ * @Author Hariprasanth 
+ * 
+ * @version 1.0
+ */
 public class CustomerDao {
 
 	private static EntityManager entityManager=Connection.getEntityManager();
