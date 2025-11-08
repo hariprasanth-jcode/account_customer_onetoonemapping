@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import com.entity.Account;
@@ -71,5 +73,22 @@ public class AccountDao {
 		entityManager.getTransaction().begin();
 		entityManager.merge(a);
 		entityManager.getTransaction().commit();
+	}
+	
+	public static void findByBalance(Double balance) {
+		List<Account> li = entityManager
+				.createQuery("Select a from Account a")
+				.getResultList();
+       li.stream().filter(i->i.getBalance()==balance)
+       .toList().forEach(System.out::println);	
+		
+	}
+	public static void findByBranch(String branch) {
+		List<Account> li = entityManager
+				.createQuery("Select a from Account a")
+				.getResultList();
+       li.stream().filter(i->i.getBranch().equalsIgnoreCase(branch))
+       .toList().forEach(System.out::println);	
+		
 	}
 }
